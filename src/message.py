@@ -20,7 +20,6 @@ class Message():
 
             setattr(self, field, value)
 
-
     def __str__(self):
         return self.serialize()
 
@@ -51,15 +50,17 @@ class ConnectionMessage(Message):
     def __init__(self, *args, **kwargs):
         super(ConnectionMessage, self).__init__('connect', 'session', 'version', 'support', **kwargs)
 
+
 class ConnectedMessage(Message):
 
     def __init__(self, *args, **kwargs):
         super(ConnectedMessage, self).__init__('connected', 'session', **kwargs)
 
+
 class FailedMessage(Message):
 
     def __init__(self, *args, **kwargs):
-        super(FailedMessage, self).__init__('connected', 'version', **kwargs)
+        super(FailedMessage, self).__init__('failed', 'version', **kwargs)
 
 
 class PingMessage(Message):
@@ -67,10 +68,12 @@ class PingMessage(Message):
     def __init__(self, *args, **kwargs):
         super(PingMessage, self).__init__('ping', 'id', **kwargs)
 
+
 class PongMessage(Message):
 
     def __init__(self, *args, **kwargs):
         super(PongMessage, self).__init__('pong', 'id', **kwargs)
+
 
 class WelcomeMessage(Message):
     """
@@ -85,3 +88,23 @@ class WelcomeMessage(Message):
         return str({
             'server_id': self.server_id
         })
+
+
+class MethodMessage(Message):
+
+    def __init__(self, *args, **kwargs):
+        super(MethodMessage, self).__init__('method', 'method', 'params', 'id', 'randomSeed', **kwargs)
+
+
+class ResultMessage(Message):
+
+    def __init__(self, *args, **kwargs):
+        super(ResultMessage, self).__init__('result', 'id', 'error', 'result', **kwargs)
+
+
+class UpdatedMessage(Message):
+
+    def __init__(self, *args, **kwargs):
+        super(UpdatedMessage, self).__init__('updated', 'methods', **kwargs)
+
+

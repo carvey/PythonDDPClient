@@ -1,5 +1,6 @@
 from websocket import create_connection
-from .message import Message, ConnectionMessage, PingMessage
+from .message import *
+
 
 class DDPClient():
 
@@ -21,3 +22,9 @@ class DDPClient():
     def ping(self, id=""):
         ping_message = PingMessage(id=id)
         self.send(ping_message)
+
+    def call(self, method, *args, **kwargs):
+        message = MethodMessage(id=4, method=method)
+        print(message)
+        self.send(message)
+
