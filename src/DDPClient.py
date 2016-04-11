@@ -25,6 +25,6 @@ class DDPClient():
 
     def call(self, method, *args, **kwargs):
         message = MethodMessage(id=4, method=method)
-        print(message)
+        print('message :' + str(message))
         self.send(message)
 
