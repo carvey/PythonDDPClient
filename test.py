@@ -1,4 +1,5 @@
 from src.DDPClient import DDPClient
+from pprint import pprint
 
 client = DDPClient('ws://localhost:3000/websocket')
 response = client.receive()
@@ -16,7 +17,7 @@ print(response)
 #     print(response)
 #     time.sleep(2)
 
-client.call(method="addCupcake", params=[])
+client.call("addCupcake", 69, 79, 89)
 
 response = client.receive()
 print(response)

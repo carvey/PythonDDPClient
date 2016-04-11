@@ -13,7 +13,7 @@ class DDPClient():
         self.send(connect_msg)
 
     def send(self, message):
-        self.connection.send(message.serialize())
+        self.connection.send(message.serialize(remove_null=True))
 
     def receive(self):
         response = self.connection.recv()
@@ -23,8 +23,7 @@ class DDPClient():
         ping_message = PingMessage(id=id)
         self.send(ping_message)
 
-    def call(self, method, *args, **kwargs):
-        message = MethodMessage(id=4, method=method)
-        print(message)
+    def call(self, method, *args):
+        message = MethodMessage(id=method, method=method, params=args)
         self.send(message)
 

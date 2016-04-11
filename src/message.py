@@ -23,12 +23,16 @@ class Message():
     def __str__(self):
         return self.serialize()
 
-    def serialize(self):
+    def serialize(self, remove_null=False):
         field_values = OrderedDict()
         field_values['msg'] = self.msg
 
         for field in self.fields:
-            field_values[field] = getattr(self, field)
+            if remove_null:
+                if getattr(self, field) != None:
+                    field_values[field] = getattr(self, field)
+            else:
+                field_values[field] = getattr(self, field)
 
         return json.dumps(field_values)
 
