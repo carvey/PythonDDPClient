@@ -17,7 +17,7 @@ print(response)
 #     print(response)
 #     time.sleep(2)
 
-client.call("addCupcake", 69, 79, 89)
+client.call("addPyData", 15)
 
 response = client.receive()
 print(response)
