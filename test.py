@@ -12,7 +12,8 @@ print(response)
 # Test the connection with some ping/pong heartbeats
 import time
 # time.sleep(1)
-for i in range(30):
+#doing a randint so we can run it multiple times and show that data is being generated
+for i in range(randint(0,10)):
     # client.ping(str(i))
     # response = client.receive()
     # print(response)
