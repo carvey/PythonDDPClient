@@ -9,16 +9,10 @@ print(response)
 response = client.receive()
 print(response)
 
-# Test the connection with some ping/pong heartbeats
+
 import time
-# time.sleep(1)
-for i in range(3):
-    # client.ping(str(i))
-    # response = client.receive()
-    # print(response)
-    client.call("addPyData", randint(0, 10))
+for i in range(25):
+    client.call("addPyData", randint(0, 100))
     response = client.receive()
-    print(response)
-    time.sleep(2)
-
-
+    pprint(response)
+    time.sleep(.7)
